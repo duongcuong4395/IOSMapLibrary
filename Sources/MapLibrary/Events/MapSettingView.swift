@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-enum DeviceLocationStatus {
+public enum DeviceLocationStatus {
     case Disable
     case Enable
     case Direction
 }
 
-struct MapSettingView: View {
+public struct MapSettingView: View {
     @EnvironmentObject var mapVM: MapsViewModel
     @EnvironmentObject var appVM: AppViewModel
     @EnvironmentObject var locationManager : LocationManager
@@ -186,7 +186,7 @@ struct MapSettingView: View {
 }
 
 
-extension MapSettingView {
+public extension MapSettingView {
     func switchDarkLightMode() {
         MapMange.share.mapStyle = MapMange.share.mapStyle == .dark ? .light : .dark
         appVM.appMode = appVM.appMode == .dark ? .light : .dark
@@ -208,7 +208,7 @@ extension MapSettingView {
 }
 
 /// Slider type
-enum TripPicker: String, CaseIterable {
+public enum TripPicker: String, CaseIterable {
     case scaled = "scaled"
     case normal = "normal"
 }
@@ -216,7 +216,7 @@ enum TripPicker: String, CaseIterable {
 // MARK: - for voice by Text
 
 import AVFoundation
-struct TextReaderView: View {
+public struct TextReaderView: View {
     @State private var textToRead: String = "This is an example text to be read out loud."
     @State private var textToReadVi: String = "Hôm nay thời tiết như thế nào?."
     private let speechSynthesizer = AVSpeechSynthesizer()
@@ -240,7 +240,7 @@ struct TextReaderView: View {
 }
 
 // MARK: - For Remove Data core gemini
-struct ButtonGenimiAddKeyView: View {
+public struct ButtonGenimiAddKeyView: View {
     @EnvironmentObject var appVM: AppViewModel
     @Environment(\.managedObjectContext) var context
     var body: some View {

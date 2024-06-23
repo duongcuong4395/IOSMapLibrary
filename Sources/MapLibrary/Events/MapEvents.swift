@@ -13,7 +13,7 @@ import Combine
 
 
 
-enum MapEvent {
+public enum MapEvent {
     case didTapAtCoordinate(CLLocationCoordinate2D)
     case didLongPressAtCoordinate(CLLocationCoordinate2D)
     case didTap(coordinate: CLLocationCoordinate2D)
@@ -24,7 +24,7 @@ enum MapEvent {
     case mapViewDidFinishTileRendering
 }
 
-protocol MapsEvent {
+public protocol MapsEvent {
     func didTapAtCoordinate(at point: CLLocationCoordinate2D)
     func didLongPressAtCoordinate(at point: CLLocationCoordinate2D)
     func didTap(at point: CLLocationCoordinate2D)
@@ -35,7 +35,7 @@ protocol MapsEvent {
     func mapViewDidFinishTileRendering()
 }
 
-extension MapsEvent {
+public extension MapsEvent {
     func didTapAtCoordinate(at point: CLLocationCoordinate2D) { return }
     func didLongPressAtCoordinate(at point: CLLocationCoordinate2D) { return }
     func didTap(at point: CLLocationCoordinate2D) { return }
@@ -47,7 +47,7 @@ extension MapsEvent {
 }
 
 
-class MapMange {
+public class MapMange {
     static let share = MapMange()
     var showTitle: Bool = false
     var mapStyle: MapStyle = .light
@@ -89,7 +89,7 @@ class MapMange {
     }
 }
 
-extension MapMange {
+public extension MapMange {
     func send(from mapsEvent: MapsEvent) {
         notifyMapsEvent.send(mapsEvent)
     }
@@ -103,11 +103,11 @@ extension MapMange {
     }
 }
 
-protocol MapEventForViewModel {
+public protocol MapEventForViewModel {
     func get<T: MarKerData>(by radius: Double, at point: CLLocation, from objs: [T], complete: @escaping ([T]) -> Void)
 }
 
-extension MapEventForViewModel {
+public extension MapEventForViewModel {
     func get<T: MarKerData>(by radius: Double, at point: CLLocation, from objs: [T], complete: @escaping ([T]) -> Void) {
         var listObj : [T] = []
         
