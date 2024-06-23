@@ -35,7 +35,7 @@ public protocol MapsEvent {
     func mapViewDidFinishTileRendering()
 }
 
-public extension MapsEvent {
+extension MapsEvent {
     func didTapAtCoordinate(at point: CLLocationCoordinate2D) { return }
     func didLongPressAtCoordinate(at point: CLLocationCoordinate2D) { return }
     func didTap(at point: CLLocationCoordinate2D) { return }
@@ -49,20 +49,20 @@ public extension MapsEvent {
 
 public class MapMange {
     static let share = MapMange()
-    var showTitle: Bool = false
-    var mapStyle: MapStyle = .light
-    var showArrow: Bool = false
-    var radiusScan : Double = 700
-    var mapSizeState: MapSizeState = .halfScreen
-    var mapAngle: Int = 0
+    public var showTitle: Bool = false
+    public var mapStyle: MapStyle = .light
+    public var showArrow: Bool = false
+    public var radiusScan : Double = 700
+    public var mapSizeState: MapSizeState = .halfScreen
+    public var mapAngle: Int = 0
     
-    var mapScanAngle: Double = 25.0
-    var widthMarkerInfor: Double = 0 // 200.0
-    var centerPoint: Point = Point(lat: 1.3167404741603153, long: 103.82397923939381)
+    public var mapScanAngle: Double = 25.0
+    public var widthMarkerInfor: Double = 0 // 200.0
+    public var centerPoint: Point = Point(lat: 1.3167404741603153, long: 103.82397923939381)
     
-    var mapBound: (xMax: Double, xMin: Double, yMax: Double, yMin: Double) = (xMax: 1.470895, xMin: 1.153183, yMax: 104.089231, yMin: 103.606952)
-    var isOverBound: Bool = false
-    var isDrawingMap: Bool = false
+    public var mapBound: (xMax: Double, xMin: Double, yMax: Double, yMin: Double) = (xMax: 1.470895, xMin: 1.153183, yMax: 104.089231, yMin: 103.606952)
+    public var isOverBound: Bool = false
+    public var isDrawingMap: Bool = false
     
     let notifyEventMap = PassthroughSubject<MapEvent, Never>()
     let notifyEventMarker = PassthroughSubject<MarkerEvent, Never>()
@@ -70,13 +70,14 @@ public class MapMange {
     let notifyMapsEvent = PassthroughSubject<MapsEvent, Never>()
     
     
-    var markerScale: CGFloat = 1.0
-    var mapBearing: CLLocationDirection = 0.0
+    public var markerScale: CGFloat = 1.0
+    public var mapBearing: CLLocationDirection = 0.0
     
-    init() {
+    public init() {
         _ = checkOverBound()
     }
-    func checkOverBound() -> Bool {
+    
+    public func checkOverBound() -> Bool {
         if (centerPoint.lat > mapBound.xMax
         || centerPoint.lat < mapBound.xMin
         || centerPoint.long > mapBound.yMax
@@ -89,7 +90,7 @@ public class MapMange {
     }
 }
 
-public extension MapMange {
+extension MapMange {
     func send(from mapsEvent: MapsEvent) {
         notifyMapsEvent.send(mapsEvent)
     }
@@ -103,11 +104,11 @@ public extension MapMange {
     }
 }
 
-public protocol MapEventForViewModel {
+protocol MapEventForViewModel {
     func get<T: MarKerData>(by radius: Double, at point: CLLocation, from objs: [T], complete: @escaping ([T]) -> Void)
 }
 
-public extension MapEventForViewModel {
+extension MapEventForViewModel {
     func get<T: MarKerData>(by radius: Double, at point: CLLocation, from objs: [T], complete: @escaping ([T]) -> Void) {
         var listObj : [T] = []
         

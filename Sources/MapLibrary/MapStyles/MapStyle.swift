@@ -9,11 +9,11 @@ import Foundation
 import GoogleMaps
 import SwiftUI
 
-enum MapSizeState {
+public enum MapSizeState {
     case fullScreen
     case halfScreen
     
-    func getMapSize() -> CGFloat {
+    public func getMapSize() -> CGFloat {
         switch self {
         case .fullScreen:
             return 0 //UIScreen.main.bounds.height/3 // 0 //UIScreen.main.bounds.height/13
@@ -23,11 +23,11 @@ enum MapSizeState {
     }
 }
 
-enum MapStyle {
+public enum MapStyle {
     case light
     case dark
     
-    func getURLStyle() -> GMSMapStyle {
+    public func getURLStyle() -> GMSMapStyle {
         var fileStyle = ""
         var gMSMapStyle = try? GMSMapStyle(contentsOfFileURL: URL(fileURLWithPath: ""))
         switch self {
@@ -50,7 +50,7 @@ enum MapStyle {
         return gMSMapStyle!
     }
     
-    func getTextColor() -> Color {
+    public func getTextColor() -> Color {
         switch self {
         case .light:
             return .black
@@ -58,7 +58,8 @@ enum MapStyle {
             return .yellow
         }
     }
-    func getIconColor() -> Color {
+    
+    public func getIconColor() -> Color {
         switch self {
         case .light:
             return .black

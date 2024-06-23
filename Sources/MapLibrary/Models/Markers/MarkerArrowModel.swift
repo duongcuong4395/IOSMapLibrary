@@ -11,19 +11,19 @@ import CoreLocation
 import SwiftUI
 
 
-struct MarkerArrowModel: Decodable {
-     var title: String = ""
-     var snippet: String = ""
-     var lat: Double = 0.0
-     var long: Double = 0.0
-     var startCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
-     var endCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
-    var nodeBefore: (lat: Double, long: Double) = (lat: 0.0, long: 0.0)
-    var isMarkerActive: Bool = false
+public struct MarkerArrowModel: Decodable {
+    public var title: String = ""
+    public var snippet: String = ""
+    public var lat: Double = 0.0
+    public var long: Double = 0.0
+    public var startCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    public var endCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    public var nodeBefore: (lat: Double, long: Double) = (lat: 0.0, long: 0.0)
+    public var isMarkerActive: Bool = false
     
     
     
-    enum CodingKeys: String, CodingKey {
+    public enum CodingKeys: String, CodingKey {
         case title
         case snippet
         case lat

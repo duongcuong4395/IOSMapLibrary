@@ -15,16 +15,16 @@ public enum DeviceLocationStatus {
 }
 
 public struct MapSettingView: View {
-    @EnvironmentObject var mapVM: MapsViewModel
-    @EnvironmentObject var appVM: AppViewModel
-    @EnvironmentObject var locationManager : LocationManager
+    @EnvironmentObject public var mapVM: MapsViewModel
+    @EnvironmentObject public var appVM: AppViewModel
+    @EnvironmentObject public var locationManager : LocationManager
     
-    @EnvironmentObject var weatherForecast2HourVM: WeatherForecast2HourViewModel
-    @EnvironmentObject var humidityVM: HumidityViewModel
-    @EnvironmentObject var windDirectionVM: WindDirectionViewModel
+    @EnvironmentObject public var weatherForecast2HourVM: WeatherForecast2HourViewModel
+    @EnvironmentObject public var humidityVM: HumidityViewModel
+    @EnvironmentObject public var windDirectionVM: WindDirectionViewModel
     
     
-    var body: some View {
+    public var body: some View {
         VStack(spacing: UIDevice.current.userInterfaceIdiom == .pad ? 55 : 30) {
             Button(action: {
                 mapVM.markerVM.clearAllMarker {
@@ -186,7 +186,7 @@ public struct MapSettingView: View {
 }
 
 
-public extension MapSettingView {
+extension MapSettingView {
     func switchDarkLightMode() {
         MapMange.share.mapStyle = MapMange.share.mapStyle == .dark ? .light : .dark
         appVM.appMode = appVM.appMode == .dark ? .light : .dark
@@ -217,11 +217,11 @@ public enum TripPicker: String, CaseIterable {
 
 import AVFoundation
 public struct TextReaderView: View {
-    @State private var textToRead: String = "This is an example text to be read out loud."
-    @State private var textToReadVi: String = "Hôm nay thời tiết như thế nào?."
-    private let speechSynthesizer = AVSpeechSynthesizer()
+    @State public var textToRead: String = "This is an example text to be read out loud."
+    @State public var textToReadVi: String = "Hôm nay thời tiết như thế nào?."
+    public let speechSynthesizer = AVSpeechSynthesizer()
     
-    var body: some View {
+    public var body: some View {
         VStack {
             
             Button(action: {
@@ -241,9 +241,9 @@ public struct TextReaderView: View {
 
 // MARK: - For Remove Data core gemini
 public struct ButtonGenimiAddKeyView: View {
-    @EnvironmentObject var appVM: AppViewModel
-    @Environment(\.managedObjectContext) var context
-    var body: some View {
+    @EnvironmentObject public var appVM: AppViewModel
+    @Environment(\.managedObjectContext) public var context
+    public var body: some View {
         Button(action: {
             
             let keyDB = GeminiAIManage.shared.getKey(from: context)
