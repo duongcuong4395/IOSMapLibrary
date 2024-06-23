@@ -15,6 +15,14 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "MapLibrary")
+            name: "MapLibrary",
+            resources: [
+                .process("Resources/Traffic/BusRoutes.json"),
+                .process("Resources/Traffic/BusServices.json"),
+                .process("Resources/Traffic/BusStops.json"),
+                .process("Resources/Traffic/CarPark.json"),
+                .process("Resources/Maps/MapsStylingLight.geojson"),
+                .process("Resources/Maps/MapsStylingNight.geojson")
+            ])
     ]
 )
