@@ -23,6 +23,7 @@ public struct MapSettingView: View {
     @EnvironmentObject public var humidityVM: HumidityViewModel
     @EnvironmentObject public var windDirectionVM: WindDirectionViewModel
     
+    public init() {} 
     
     public var body: some View {
         VStack(spacing: UIDevice.current.userInterfaceIdiom == .pad ? 55 : 30) {
